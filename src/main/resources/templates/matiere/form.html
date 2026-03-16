@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Matière - Bacc Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">ETU3568</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card p-4 col-md-6 mx-auto">
+            <h2 class="mb-4 text-primary" th:text="${matiere.id == null ? 'Nouvelle Matière' : 'Modifier Matière'}"></h2>
+            <form th:action="@{/matieres}" th:object="${matiere}" method="post">
+                <input type="hidden" th:field="*{id}" />
+                <div class="mb-3">
+                    <label class="form-label">Nom de la Matière</label>
+                    <input type="text" th:field="*{nom}" class="form-control" required />
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <a href="/matieres" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

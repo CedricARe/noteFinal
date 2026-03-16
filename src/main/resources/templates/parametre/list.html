@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Paramètres - Bacc Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">ETU3568</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/candidats">Candidats</a>
+                <a class="nav-link" href="/matieres">Matières</a>
+                <a class="nav-link active" href="/parametres">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-primary">Liste des Paramètres</h2>
+                <a href="/parametres/new" class="btn btn-success">Ajouter</a>
+            </div>
+            
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Matière</th>
+                        <th>Seuil (Différance)</th>
+                        <th>Opérateur</th>
+                        <th>Résolution</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${parametres}">
+                        <td th:text="${p.matiere.nom}"></td>
+                        <td th:text="${p.seuil}"></td>
+                        <td th:text="${p.operateur.nom}"></td>
+                        <td th:text="${p.resolution.nom}"></td>
+                        <td>
+                            <a th:href="@{/parametres/edit/{id}(id=${p.id})}" class="btn btn-sm btn-warning">Éditer</a>
+                            <a th:href="@{/parametres/delete/{id}(id=${p.id})}" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer?')">Supprimer</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

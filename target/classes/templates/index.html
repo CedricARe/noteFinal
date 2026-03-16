@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sélection Candidat - Bacc Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">ETU3568</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/candidats">Candidats</a>
+                <a class="nav-link" href="/matieres">Matières</a>
+                <a class="nav-link" href="/parametres">Paramètres</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card p-4">
+            <h2 class="mb-4 text-primary">Calculer Note Finale</h2>
+            <form th:action="@{/calculate}" method="post">
+                <div class="mb-3">
+                    <label for="candidatId" class="form-label">Sélectionner un Candidat</label>
+                    <select name="candidatId" id="candidatId" class="form-select" required>
+                        <option value="">-- Choisir un candidat --</option>
+                        <option th:each="c : ${candidats}" th:value="${c.id}" th:text="${c.nom + ' ' + c.prenom + ' (' + c.matricule + ')'}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary px-4">Valider</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
