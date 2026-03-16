@@ -1,12 +1,18 @@
 package com.example.note.service;
 
-import com.example.note.entity.*;
-import com.example.note.repository.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.example.note.entity.Matiere;
+import com.example.note.entity.Note;
+import com.example.note.entity.Parametres;
+import com.example.note.repository.NoteRepository;
+import com.example.note.repository.ParametresRepository;
 
 @Service
 public class NoteService {
@@ -65,7 +71,6 @@ public class NoteService {
 
                 if (op.equals("<") && sommeDifferences < seuil) match = true;
                 else if (op.equals(">") && sommeDifferences > seuil) match = true;
-                else if (op.equals("=") && sommeDifferences == seuil) match = true;
                 else if (op.equals("<=") && sommeDifferences <= seuil) match = true;
                 else if (op.equals(">=") && sommeDifferences >= seuil) match = true;
 

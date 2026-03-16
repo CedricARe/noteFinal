@@ -1,11 +1,16 @@
 package com.example.note.controller;
 
-import com.example.note.entity.Candidat;
-import com.example.note.repository.CandidatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.note.entity.Candidat;
+import com.example.note.repository.CandidatRepository;
 
 @Controller
 @RequestMapping("/candidats")
@@ -39,7 +44,7 @@ public class CandidatController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id) {   
         candidatRepository.deleteById(id);
         return "redirect:/candidats";
     }
